@@ -34,25 +34,43 @@ const save = (listingObj) => {
   });
 };
 
-const fakeListing = {
-  id: 1,
-  imageUrl: 'https://s3.us-east-2.amazonaws.com/fantasybnb/images/spongebob.png',
-  description: 'ENTIRE HOUSE 1 BED',
-  title: '124 Conch Street',
-  price: 45,
-  num_reviews: 96,
-  avg_rating: 4.78,
-  keywords: ['animated', 'happy', 'home'],
-};
-
-save(fakeListing);
+// Listing.find((err, listings) => {
+//   if (err) {
+//     console.log('err', err);
+//   } else {
+//     console.log('here are the listings', listings);
+//   }
+// });
 
 
-Listing.find((err, listings) => {
-  if (err) {
-    console.log('err', err);
-  } else {
-    console.log('here are the listings', listings);
-  }
-});
+
+getSimilarListings = (id, callback) => {
+
+  Listing.findOne({ id: id }, 'price keywords id')
+  .then((listing) => {
+    let price = listing.price;
+    let keywords = listing.keywords;
+    let currentId = listing.id;
+
+    return Listing.find({ price: {$gt: price-100, $lt: price+100 }, keywords: {$in: keywords}}).where({ id: {$ne: currentId}}).sort({avg_rating: -1});
+  }).then((listings) => {
+    if (listings.length < 1) {
+      return Listing.find({keywords: {$in: keywords}}).where({ id: {$ne: currentId}}).sort({avg_rating: -1});
+     } else {
+      return listings;
+     } 
+  }).then((listings) => {
+    console.log('here are the similar listings', listings);
+    callback(listings);
+  });
+
+    
+
+
+}
+
+getSimilarListings(1);
+
+
+module.exports.save = save;
 

@@ -10,7 +10,8 @@
   "scripts": {},
   "dependencies": {
     "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.10.0"
+    "eslint-plugin-import": "^2.10.0",
+    "mongoose": "^5.0.14"
   },
   "devDependencies": {
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
