@@ -52,10 +52,14 @@ getSimilarListings = (id, callback) => {
     let keywords = listing.keywords;
     let currentId = listing.id;
 
-    return Listing.find({ price: {$gt: price-100, $lt: price+100 }, keywords: {$in: keywords}}).where({ id: {$ne: currentId}}).sort({avg_rating: -1});
+    return Listing.find({ price: {$gt: price-100, $lt: price+100 }, keywords: {$in: keywords}})
+      .where({ id: {$ne: currentId}})
+      .sort({avg_rating: -1});
   }).then((listings) => {
     if (listings.length < 1) {
-      return Listing.find({keywords: {$in: keywords}}).where({ id: {$ne: currentId}}).sort({avg_rating: -1});
+      return Listing.find({keywords: {$in: keywords}})
+        .where({ id: {$ne: currentId}})
+        .sort({avg_rating: -1});
      } else {
       return listings;
      } 
@@ -73,4 +77,5 @@ getSimilarListings(1);
 
 
 module.exports.save = save;
+module.exports.getSimilarListings = getSimilarListings;
 
