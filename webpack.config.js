@@ -18,6 +18,23 @@ module.exports = {
               presets: ["es2015", "react"]
           }
       
+        },
+        {
+          test: /\.css$/,
+          include: SRC_DIR,
+          use: [
+            {
+               loader: 'style-loader',
+            },
+            {
+               loader: 'css-loader',
+               options: {
+                  sourceMap: true,
+                  modules: true,
+                  localIdentName: '[local]___[hash:base64:5]'
+                 }
+            }
+            ],
         }
     ]
 }

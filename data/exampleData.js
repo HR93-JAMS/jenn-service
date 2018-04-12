@@ -1,4 +1,4 @@
-[ { keywords: [ 'animated', 'happy', 'home' ],
+const exampleData = [ { keywords: [ 'animated', 'happy', 'home' ],
     _id: 5ace8e69b91b8e1c040dee15,
     id: 1,
     imageUrl: 'https://s3.us-east-2.amazonaws.com/fantasybnb/images/1.jpg',
@@ -38,3 +38,5 @@
     num_reviews: 64,
     avg_rating: 4.82,
     __v: 0 } ]
+
+module.exports = exampleData;

@@ -8,7 +8,7 @@ let app = express();
 app.use(morgan('dev'));
 app.use(parser.json());
 
-app.use(express.static(__dirname + '/../client/dist'));
+app.use(express.static('../client/dist'));
 
 
 app.get('/rooms/:listingId/similar_listings', (req, res) => {
