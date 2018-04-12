@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Slider from  'react-slick';
 import styles from './style.css';
+import Listing from './Listing.jsx';
 // import exampleListings from '../../data/exampleData.js'
 
 class SimilarListings extends React.Component {
@@ -23,9 +24,8 @@ class SimilarListings extends React.Component {
 
       return (
         <div className={styles.listings}>
-          <h1 className={`${styles.header} ${styles.font} `}>Similar listings</h1>
           <div className={styles.container}>
-            {/* <button className={styles.button}>Vanity Button</button> */}
+          <h1 className={`${styles.header} ${styles.font} `}>Similar listings</h1>
 
             <Slider {...settings}>
             {
@@ -34,28 +34,12 @@ class SimilarListings extends React.Component {
               })
             }
             </Slider>
-
-            
           </div>
         </div>
       )
     };
 
 }
-
-const Listing = ({data}) => (
-
-  <div>
-    <img className={styles.image} src={data.imageUrl} />
-    <h4>{data.description}</h4>
-    <h2>{data.title}</h2>
-    <p>{data.price}</p>
-    <p>{data.num_reviews}</p>
-  </div>
-)
-
-// const exampleListings= [{title: 'happy'}, {title: 'test'}];
-
 
 const exampleListings = [ { keywords: [ 'animated', 'happy', 'home' ],
 id: 1,
