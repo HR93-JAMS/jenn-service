@@ -24,7 +24,6 @@ app.get('/rooms/:listingId/similar_listings', (req, res) => {
 });
 
 
-
 let port = 1128;
 
 app.listen(port, function() {
