@@ -10,31 +10,43 @@ class SimilarListings extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        listings: exampleListings
+        listings: exampleListings,
+        index: 0
       }
     }
 
     render () {
 
-      var settings = {
-        slidesToShow: 3,
-        slidesToScroll: 1, 
-        arrows: true
-      };
+      // var settings = {
+      //   slidesToShow: 3,
+      //   slidesToScroll: 1, 
+      //   arrows: true
+      // };
 
       return (
         <div className={styles.listings}>
-          <div className={styles.container}>
-          <h1 className={`${styles.header} ${styles.font} `}>Similar listings</h1>
+        <h1 className={`${styles.header} ${styles.font} `}>Similar listings</h1>
 
-            <Slider {...settings}>
+
+            {/* <Slider {...settings}>
             {
               this.state.listings.map((listing) => {
                 return <Listing data={listing}/>
               })
             }
-            </Slider>
-          </div>
+            </Slider> */}
+            <span className={styles.container}>
+             {
+              this.state.listings.map((listing, index) => {
+                if (this.state.index <= index && index < this.state.index+3) {
+                  return <Listing data={listing}/>
+                }
+              })
+            }
+          </span>
+          {/* <span className={`fas fa-angle-right ${styles.arrow}`}/> */}
+          <span className={`${styles.arrow}`}/>
+
         </div>
       )
     };

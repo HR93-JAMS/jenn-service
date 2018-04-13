@@ -10,10 +10,11 @@ font-family: 'Open Sans', sans-serif; */
 } */
 
 .container {
-  padding: 0px 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: 1032px;
 }
-
-
 
 .image {
   height: 210px;
@@ -78,4 +79,22 @@ font-family: 'Open Sans', sans-serif; */
   font-weight: 100;
   letter-spacing: 0.5px;
   line-height: 27px;
+}
+
+.listings {
+  padding: 0px 50px;
+  height: 304px;
+  position: relative;
+}
+
+.arrow {
+  font: 10px;
+  position: absolute;
+  top: 50%;
+  right: 25px;
+  background-image: url('../dist/arrow-slider-right.png');
+  background-repeat:no-repeat;
+  background-size: 100% 100%;
+  width:13px;
+  height:24px;
 }
