@@ -10,7 +10,8 @@
   "scripts": {
     "webpack": "webpack -d --watch",
     "server-dev": "nodemon --inspect server/index.js",
-    "test": "jest"
+    "test": "jest",
+    "start": "node server/index.js"
   },
   "dependencies": {
     "babel-preset-env": "^1.6.1",

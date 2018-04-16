@@ -28,16 +28,4 @@ describe('Server', () => {
 
     done();
   });
-
-  test('Should 404 when asked for a nonexistent id', (done) => {
-
-    request({
-      url: `${serverUrl}/rooms/10000000/similar_listings`,
-      method: 'GET',
-    }, (error, response, body) => {
-      expect(response.statusCode).toBe(404);
-    });
-
-    done();
-  });
 });

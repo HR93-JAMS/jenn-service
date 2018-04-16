@@ -10,15 +10,17 @@ describe('DB', () => {
     });
   });
 
-  // test('Should return correct data for given location id', (done) => {
-  //   db.get(5, (err, result1) => {
-  //     expect(result1[0].src).toBe('https://s3.amazonaws.com/fantasybnb-images/5-2.jpg');
-  //     db.get(5, (err, result2) => {
-  //       expect(result2[0].src).toBe('https://s3.amazonaws.com/fantasybnb-images/5-2.jpg');
-  //       done();
-  //     });
-  //   });
-  // });
+  test('Should return similar listing for given listing id', (done) => {
+    db.getSimilarListings(1, (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        expect(result[0].keywords.includes('home')).toBe(true);
+        done();
+      }
+     
+    });
+  });
 
 });
 
