@@ -18,11 +18,17 @@ class SimilarListings extends React.Component {
     }
 
 
-    handleClick () {
-      console.log('clicked!');
-      this.setState({
-        index: this.state.index++
-      });
+    handleClick (direction) {
+      if (direction === 'left') {
+        var index = this.state.index-1;
+      } else {
+        index = this.state.index+1;
+      }
+      if (index < this.state.listings.length-2 && index >= 0) {
+        this.setState({
+          index: index
+        });
+      }
     }
 
     render () {
@@ -36,6 +42,8 @@ class SimilarListings extends React.Component {
       return (
         <div className={styles.listings}>
         <h1 className={`${styles.header} ${styles.font} `}>Similar listings</h1>
+        <span onClick={() => this.handleClick("left")} className={`${styles.leftArrow}`}/>
+
 
 
             {/* <Slider {...settings}>
@@ -54,8 +62,7 @@ class SimilarListings extends React.Component {
               })
             }
           </span>
-          {/* <span className={`fas fa-angle-right ${styles.arrow}`}/> */}
-          <span onClick={this.handleClick} className={`${styles.arrow}`}/>
+          <span onClick={() => this.handleClick('right')} className={`${styles.rightArrow}`}/>
 
         </div>
       )

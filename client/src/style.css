@@ -84,15 +84,28 @@ font-family: 'Open Sans', sans-serif; */
 .listings {
   padding: 0px 50px;
   height: 304px;
+  width: 1000px;
   position: relative;
 }
 
-.arrow {
+.rightArrow {
   font: 10px;
   position: absolute;
   top: 50%;
   right: 25px;
   background-image: url('../dist/arrow-slider-right.png');
+  background-repeat:no-repeat;
+  background-size: 100% 100%;
+  width:13px;
+  height:24px;
+}
+
+.leftArrow {
+  font: 10px;
+  position: absolute;
+  top: 50%;
+  left: 25px;
+  background-image: url('../dist/arrow-slider-left.png');
   background-repeat:no-repeat;
   background-size: 100% 100%;
   width:13px;
