@@ -3,7 +3,7 @@ cache:
   directories:
     - node_modules
 node_us:
-  - 6
+  - 4
 before_script:
   - npm install
 script:
