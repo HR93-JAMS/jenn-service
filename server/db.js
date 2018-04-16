@@ -38,7 +38,7 @@ const save = (listingObj, callback) => {
 
 getSimilarListings = (id, callback) => {
 
-  Listing.findOne({ id: id }, 'price keywords id')
+  Listing.findOne({ id: id }, 'price keywords id').exec()
   .then((listing) => {
     let price = listing.price;
     let keywords = listing.keywords;
@@ -57,15 +57,17 @@ getSimilarListings = (id, callback) => {
      } 
   }).then((listings) => {
     console.log('here are the similar listings', listings);
-    callback(listings);
-  });
+    callback(null, listings);
+  }).catch((err) => callback(err, null));
 
     
 
 
 }
 
-// getSimilarListings(1, (listing) => console.log(listing));
+// Listing.findOne({ id: 10000 }, 'price keywords id').exec();
+
+getSimilarListings(10000, (listing) => console.log('here is listing', listing));
 // let testData = { keywords: [ 'animated', 'happy', 'home' ],
 // id: 9999,
 // imageUrl: 'https://s3.us-east-2.amazonaws.com/fantasybnb/images/1.jpg',

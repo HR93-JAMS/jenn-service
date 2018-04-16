@@ -17,17 +17,17 @@ describe('Server', () => {
     done();
   });
 
-  // test('Should be able to handle POST request', (done) => {
+  test('Should be able to handle POST request', (done) => {
 
-  //   request({
-  //     url: `${serverUrl}/booking`,
-  //     method: 'POST',
-  //   }, (error, response, body) => {
-  //     expect(response.statusCode).toBe(200);
-  //   });
+    request({
+      url: `${serverUrl}/rooms/1`,
+      method: 'POST',
+    }, (error, response, body) => {
+      expect(response.statusCode).toBe(200);
+    });
 
-  //   done();
-  // });
+    done();
+  });
 
   test('Should 404 when asked for a nonexistent id', (done) => {
 

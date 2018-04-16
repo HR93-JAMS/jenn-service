@@ -1,5 +1,30 @@
 const db = require('../db.js');
 
+
+describe('DB', () => {
+  
+  test('Should return an array when asked for similar listings', (done) => {
+    db.getSimilarListings(1, (err, result) => {
+      expect(Array.isArray(result)).toBe(true);
+      done();
+    });
+  });
+
+  // test('Should return correct data for given location id', (done) => {
+  //   db.get(5, (err, result1) => {
+  //     expect(result1[0].src).toBe('https://s3.amazonaws.com/fantasybnb-images/5-2.jpg');
+  //     db.get(5, (err, result2) => {
+  //       expect(result2[0].src).toBe('https://s3.amazonaws.com/fantasybnb-images/5-2.jpg');
+  //       done();
+  //     });
+  //   });
+  // });
+
+});
+
+
+
+
 // describe('DB', () => {
 //   test('Should save a new listing', (done) => {
 //     let testData = { keywords: [ 'animated', 'happy', 'home' ],

@@ -14,10 +14,15 @@ app.use(express.static('../client/dist'));
 app.get('/rooms/:listingId/similar_listings', (req, res) => {
 
   let id = req.params.listingId;
-  db.getSimilarListings(id, (listings) => {
-    console.log('here are all the similar listings!', listings);
-    //json stringify?
-    res.send(listings);
+  db.getSimilarListings(id, (err, listings) => {
+    if (err) {
+      res.status(404);
+      res.end(err);
+    } else {
+      console.log('here are all the similar listings!', listings);
+      //json stringify?
+      res.send(listings);
+    }
   });
 
 });
