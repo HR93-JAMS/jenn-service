@@ -24,24 +24,16 @@ let listingSchema = mongoose.Schema({
 
 const Listing = mongoose.model('Listing', listingSchema);
 
-const save = (listingObj) => {
-  Listing.create(listingObj, (err, listing) => {
+const save = (listingObj, callback) => {
+
+  Listing.findOneAndUpdate({id: listingObj.id}, listingObj, {upsert: true, new: true}, (err, listing) => {
     if (err) {
-      console.log('error in creating', err);
+      callback(err, null);
     } else {
-      console.log('listing created', listing);
+      callback(null, listing);
     }
-  });
+  })
 };
-
-// Listing.find((err, listings) => {
-//   if (err) {
-//     console.log('err', err);
-//   } else {
-//     console.log('here are the listings', listings);
-//   }
-// });
-
 
 
 getSimilarListings = (id, callback) => {
@@ -73,9 +65,82 @@ getSimilarListings = (id, callback) => {
 
 }
 
-getSimilarListings(1);
+// getSimilarListings(1, (listing) => console.log(listing));
+// let testData = { keywords: [ 'animated', 'happy', 'home' ],
+// id: 9999,
+// imageUrl: 'https://s3.us-east-2.amazonaws.com/fantasybnb/images/1.jpg',
+// description: 'ENTIRE HOUSE 1 BED',
+// title: '124 Conch Street',
+// price: 45,
+// num_reviews: 96,
+// avg_rating: 4.78};
+
+// save(testData);
+// Listing.findOne({ id: testData.id }, (err, results) => {
+//   console.log(err, results);
+// })
+
+// Listing.deleteOne({ id: 9999}, (err, results) => {
+//   console.log(err, results);
+// });
+
+
+
+// Listing.find((err, listings) => {
+//   if (err) {
+//     console.log('err', err);
+//   } else {
+//     console.log('here are the listings', listings);
+//   }
+// });
 
 
 module.exports.save = save;
 module.exports.getSimilarListings = getSimilarListings;
+module.exports.Listing = Listing;
 
+// let testData1 = { keywords: [ 'abcde'],
+// id: 9999,
+// imageUrl: 'https://s3.us-east-2.amazonaws.com/fantasybnb/images/1.jpg',
+// description: 'ENTIRE HOUSE 1 BED',
+// title: '124 Conch Street',
+// price: 45,
+// num_reviews: 96,
+// avg_rating: 4.78};
+
+// let testData2 = { keywords: [ 'real' ],
+// id: 8888,
+// imageUrl: 'https://s3.us-east-2.amazonaws.com/fantasybnb/images/2.jpg',
+// description: 'ENTIRE APARTMENT 1 BED',
+// title: '221b Baker Street',
+// price: 199,
+// num_reviews: 47,
+// avg_rating: 3.29}
+
+// let testData3 = { keywords: [ 'home', 'abcde' ],
+// id: 7777,
+// imageUrl: 'https://s3.us-east-2.amazonaws.com/fantasybnb/images/4.jpg',
+// description: 'ENTIRE HOUSE 3 BEDS',
+// title: '742 Evergreen Terrace',
+// price: 125,
+// num_reviews: 28,
+// avg_rating: 2.35}
+
+// save(testData1, (err, listing) => {
+//   console.log(err, listing);
+// });
+// save(testData2);
+// save(testData3);
+
+// getSimilarListings(9999, (listings) => {console.log('here are the listings', listings)});
+
+// Listing.deleteOne({ id: 9999}, (err, results) => {
+//   console.log(err, results);
+// });
+
+// Listing.deleteOne({ id: 7777}, (err, results) => {
+//   console.log(err, results);
+// });
+// Listing.deleteOne({ id: 8888}, (err, results) => {
+//   console.log(err, results);
+// });

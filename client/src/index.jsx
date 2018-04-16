@@ -13,6 +13,16 @@ class SimilarListings extends React.Component {
         listings: exampleListings,
         index: 0
       }
+
+      this.handleClick = this.handleClick.bind(this);
+    }
+
+
+    handleClick () {
+      console.log('clicked!');
+      this.setState({
+        index: this.state.index++
+      });
     }
 
     render () {
@@ -45,7 +55,7 @@ class SimilarListings extends React.Component {
             }
           </span>
           {/* <span className={`fas fa-angle-right ${styles.arrow}`}/> */}
-          <span className={`${styles.arrow}`}/>
+          <span onClick={this.handleClick} className={`${styles.arrow}`}/>
 
         </div>
       )
