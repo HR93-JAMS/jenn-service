@@ -3,11 +3,9 @@ import ReactDOM from 'react-dom';
 import Slider from  'react-slick';
 import styles from './style.css';
 import Listing from './Listing.jsx';
-import rightArrow from '../dist/arrow-slider-right.png';
-import prevArrow from '../dist/arrow-slider-left.png';
-import _ from 'underscore';
+import PrevArrow from './PrevArrow.jsx';
+import NextArrow from './NextArrow.jsx';
 
-// import exampleListings from '../../data/exampleData.js'
 
 class SimilarListings extends React.Component {
 
@@ -17,31 +15,39 @@ class SimilarListings extends React.Component {
       this.state = {
         listings: exampleListings,
         index: 0,
-        currentListingId: 4,
         listingsLength: 3
       }
 
+      this.fetchSimilarListings = this.fetchSimilarListings.bind(this);
     }
 
     componentDidMount () {
+      this.fetchSimilarListings();
+    }
+    
+    componentDidUpdate(prevProps) {
+      if (prevProps.currentListingId !== this.props.currentListingId) {
+        this.fetchSimilarListings();
+      }
+    }
 
-      fetch(`/rooms/${this.state.currentListingId}/similar_listings`)
-      .then(response => response.json())
-      .then(
-        (listings) => {
-          console.log('success', listings);
-          this.setState({
-            listings: listings,
-            index: 0,
-            listingsLength: listings.length
-          })
-        },
-  
-        (error)=> {
-          console.log('sorry error!', error);
-        }  
+    fetchSimilarListings () {
+      fetch(`/rooms/${this.props.currentListingId}/similar_listings`)
+        .then(response => response.json())
+        .then(
+          (listings) => {
+            console.log('success', listings);
+            this.setState({
+              listings: listings,
+              index: 0,
+              listingsLength: listings.length
+            })
+          },
+    
+          (error)=> {
+            console.log('sorry error!', error);
+          }  
       )
-      // grab the props from app and make an api call
     }
 
     render () {
@@ -59,10 +65,6 @@ class SimilarListings extends React.Component {
       return (
         <div className={styles.listings}>
         <h1 className={`${styles.header} ${styles.font} `}>Similar listings</h1>
-        {/* <span onClick={() => this.handleClick("left")} className={`${styles.leftArrow}`}/> */}
-
-
-
             <Slider {...settings}>
             {
               this.state.listings.map((listing, index) => {
@@ -77,31 +79,7 @@ class SimilarListings extends React.Component {
 }
 
 
-const NextArrow = ({onClick, incrementIndex, currentIndex, maxLength, debounceInc}) => {
-  let visibilityState = (currentIndex < maxLength - 3 ) ? "visible" : 'hidden';
-  return (
-      <span
-          style={{visibility: visibilityState}}
-          className="slick-arrow"
-          onClick={onClick}
-      >
-          <img src={rightArrow} className={styles.nextArrow}/>
-      </span>
-  );
-}
 
-const PrevArrow = ({onClick, decrementIndex, currentIndex}) => {
-  let visibilityState = (currentIndex > 0 ) ? "visible" : 'hidden';
-  return (
-      <span
-          style={{visibility: visibilityState}}
-          className="slick-arrow"
-          onClick={onClick}
-      >
-          <img src={prevArrow} className={styles.prevArrow} />
-      </span>
-  );
-}
 
 
 const exampleListings = [ { keywords: [ 'animated', 'happy', 'home' ],
@@ -141,4 +119,4 @@ num_reviews: 64,
 avg_rating: 4.82,
 __v: 0 } ]
 
-ReactDOM.render(<SimilarListings />, document.getElementById('similarListing'));
+ReactDOM.render(<SimilarListings currentListingId={50}/>, document.getElementById('similarListing'));
