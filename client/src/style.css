@@ -1,0 +1,113 @@
+.font {
+  font-family: 'Cabin', sans-serif;
+  letter-spacing: 0.5px;
+/* font-family: 'Roboto', sans-serif;
+font-family: 'Open Sans', sans-serif; */
+}
+
+/* .listings {
+  composes: font;
+} */
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: 1032px;
+}
+
+.image {
+  height: 210px;
+  width: 316px;
+}
+
+.header {
+  composes: font;
+  font-weight: 600;
+  font-size: 28px;
+  letter-spacing: 0.5px;
+  line-height: 32px;
+  color: #484848;
+}
+
+.description {
+  composes: font;
+  color: rgb(160, 47, 24);
+  font-size: 12px;
+  font-weight: 700;
+  margin: 0px;
+}
+
+.title {
+  composes: font;
+  color: #484848;
+  font-size: 19px;
+  font-weight: 700;
+  margin: 0px;
+  line-height: 32px;
+}
+
+.listingText {
+  padding-top: 8px;
+}
+
+.price {
+  composes: font;
+  color: #484848;
+  font-size: 15px;
+  line-height: 22px;
+  margin: 0px;
+
+}
+
+.gray {
+  color:#D3D3D3;
+}
+
+.teal {
+  color: #008489;
+
+}
+
+.stars {
+  font-size: 9px;
+}
+
+.numReviews {
+  font-size: 12px;
+  margin-left: 3px;
+  font-weight: 100;
+  letter-spacing: 0.5px;
+  line-height: 27px;
+}
+
+.listings {
+  padding: 0px 50px;
+  height: 304px;
+  width: 1000px;
+  position: relative;
+}
+
+.rightArrow {
+  font: 10px;
+  position: absolute;
+  top: 50%;
+  right: 25px;
+  background-image: url('../dist/arrow-slider-right.png');
+  background-repeat:no-repeat;
+  background-size: 100% 100%;
+  width:13px;
+  height:24px;
+}
+
+.leftArrow {
+  font: 10px;
+  position: absolute;
+  top: 50%;
+  left: 25px;
+  background-image: url('../dist/arrow-slider-left.png');
+  background-repeat:no-repeat;
+  background-size: 100% 100%;
+  width:13px;
+  height:24px;
+}
