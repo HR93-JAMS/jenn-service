@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import Slider from  'react-slick';
 import styles from './style.css';
 import Listing from './Listing.jsx';
+import rightArrow from '../dist/arrow-slider-right.png';
+import prevArrow from '../dist/arrow-slider-left.png';
+
 // import exampleListings from '../../data/exampleData.js'
 
 class SimilarListings extends React.Component {
@@ -11,64 +14,69 @@ class SimilarListings extends React.Component {
       super(props);
       this.state = {
         listings: exampleListings,
-        index: 0
       }
 
-      this.handleClick = this.handleClick.bind(this);
     }
 
-
-    handleClick (direction) {
-      if (direction === 'left') {
-        var index = this.state.index-1;
-      } else {
-        index = this.state.index+1;
-      }
-      if (index < this.state.listings.length-2 && index >= 0) {
-        this.setState({
-          index: index
-        });
-      }
+    componentDidMount () {
+      // grab the props from app and make an api call
     }
 
     render () {
 
-      // var settings = {
-      //   slidesToShow: 3,
-      //   slidesToScroll: 1, 
-      //   arrows: true
-      // };
+      var settings = {
+        slidesToShow: 3,
+        slidesToScroll: 1, 
+        arrows: true,
+        infinite: false,
+        nextArrow: <NextArrow />,
+        prevArrow: <PrevArrow />,
+
+      };
 
       return (
         <div className={styles.listings}>
         <h1 className={`${styles.header} ${styles.font} `}>Similar listings</h1>
-        <span onClick={() => this.handleClick("left")} className={`${styles.leftArrow}`}/>
+        {/* <span onClick={() => this.handleClick("left")} className={`${styles.leftArrow}`}/> */}
 
 
 
-            {/* <Slider {...settings}>
+            <Slider {...settings}>
             {
-              this.state.listings.map((listing) => {
-                return <Listing data={listing}/>
-              })
-            }
-            </Slider> */}
-            <span className={styles.container}>
-             {
               this.state.listings.map((listing, index) => {
-                if (this.state.index <= index && index < this.state.index+3) {
-                  return <Listing data={listing}/>
-                }
+                return <Listing key={index} data={listing} index={index}/>
               })
             }
-          </span>
-          <span onClick={() => this.handleClick('right')} className={`${styles.rightArrow}`}/>
-
+            </Slider>
         </div>
       )
     };
 
 }
+
+
+const NextArrow = ({onClick}) => {
+  return (
+      <span
+          className="slick-arrow"
+          onClick={onClick}
+      >
+          <img src={rightArrow} className={styles.nextArrow} />
+      </span>
+  );
+}
+
+const PrevArrow = ({onClick}) => {
+  return (
+      <span
+          className="slick-arrow"
+          onClick={onClick}
+      >
+          <img src={prevArrow} className={styles.prevArrow} />
+      </span>
+  );
+}
+
 
 const exampleListings = [ { keywords: [ 'animated', 'happy', 'home' ],
 id: 1,

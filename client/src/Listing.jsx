@@ -26,7 +26,7 @@ const Rating = ({rating}) => {
       klass = `fas fa-star teal ${styles.teal} ${styles.stars}`;
     }
     stars.push(
-      <span
+      <span 
         style={{
           display: "inline-block",
           width: "5px",

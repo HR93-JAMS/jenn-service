@@ -88,18 +88,6 @@ font-family: 'Open Sans', sans-serif; */
   position: relative;
 }
 
-.rightArrow {
-  font: 10px;
-  position: absolute;
-  top: 50%;
-  right: 25px;
-  background-image: url('../dist/arrow-slider-right.png');
-  background-repeat:no-repeat;
-  background-size: 100% 100%;
-  width:13px;
-  height:24px;
-}
-
 .leftArrow {
   font: 10px;
   position: absolute;
@@ -110,4 +98,20 @@ font-family: 'Open Sans', sans-serif; */
   background-size: 100% 100%;
   width:13px;
   height:24px;
+}
+
+.nextArrow {
+  width:13px;
+  height:24px;
+  position: absolute;
+  top: 33%;
+  right: -8px;
+}
+
+.prevArrow {
+  width:13px;
+  height:24px;
+  position: absolute;
+  top: 33%;
+  left: -23px;
 }
