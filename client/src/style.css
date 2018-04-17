@@ -16,11 +16,6 @@ font-family: 'Open Sans', sans-serif; */
   max-width: 1032px;
 }
 
-.image {
-  height: 210px;
-  width: 316px;
-}
-
 .header {
   composes: font;
   font-weight: 600;
@@ -116,4 +111,40 @@ font-family: 'Open Sans', sans-serif; */
   top: 33%;
   left: -23px;
   cursor: pointer;
+}
+
+.imageContainer {
+  position: relative;
+}
+
+.image {
+  top: 0;
+  left: 0;
+  height: 210px;
+  width: 316px;
+}
+
+.heart {
+  position: absolute;
+  top: 13px;
+  right: 28px;
+  z-index: 2;
+  font-size: 26px;
+  cursor: pointer;
+  color: white;
+}
+
+.heartPath {
+  stroke: white;
+  stroke-width: 2px;
+  transform: scale(0.85);
+}
+
+.heartSVG {
+  position: absolute;
+  top: 13px;
+  right: 28px;
+  z-index: 1;
+  fill-opacity: .4;
+  width: 32px;
 }
