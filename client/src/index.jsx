@@ -14,12 +14,27 @@ class SimilarListings extends React.Component {
       super(props);
       this.state = {
         listings: exampleListings,
+        index: 0
       }
 
     }
 
     componentDidMount () {
       // grab the props from app and make an api call
+    }
+
+    incrementIndex () {
+      let newIndex = this.state.index+1;
+      this.setState({
+        index: newIndex
+      })
+    }
+
+    decrementIndex () {
+      let newIndex = this.state.index-1;
+      this.setState({
+        index: newIndex
+      })
     }
 
     render () {
@@ -29,8 +44,8 @@ class SimilarListings extends React.Component {
         slidesToScroll: 1, 
         arrows: true,
         infinite: false,
-        nextArrow: <NextArrow />,
-        prevArrow: <PrevArrow />,
+        nextArrow: <NextArrow incrementIndex={this.incrementIndex.bind(this)} currentIndex = {this.state.index}/>,
+        prevArrow: <PrevArrow decrementIndex={this.decrementIndex.bind(this)} currentIndex = {this.state.index}/>,
 
       };
 
@@ -55,20 +70,24 @@ class SimilarListings extends React.Component {
 }
 
 
-const NextArrow = ({onClick}) => {
+const NextArrow = ({onClick, incrementIndex, currentIndex}) => {
+  let visibilityState = (currentIndex === 0 ) ? "visible" : 'hidden';
   return (
       <span
+          style={{visibility: visibilityState}}
           className="slick-arrow"
-          onClick={onClick}
+          onClick={() => {onClick(); incrementIndex();}}
       >
-          <img src={rightArrow} className={styles.nextArrow} />
+          <img src={rightArrow} className={styles.nextArrow}/>
       </span>
   );
 }
 
-const PrevArrow = ({onClick}) => {
+const PrevArrow = ({onClick, decrementIndex, currentIndex}) => {
+  let visibilityState = (currentIndex > 0 ) ? "visible" : 'hidden';
   return (
       <span
+          style={{visibility: visibilityState}}
           className="slick-arrow"
           onClick={onClick}
       >
