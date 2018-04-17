@@ -89,7 +89,7 @@ const PrevArrow = ({onClick, decrementIndex, currentIndex}) => {
       <span
           style={{visibility: visibilityState}}
           className="slick-arrow"
-          onClick={onClick}
+          onClick={() => {onClick(); decrementIndex();}}
       >
           <img src={prevArrow} className={styles.prevArrow} />
       </span>
