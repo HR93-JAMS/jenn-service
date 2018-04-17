@@ -5,36 +5,43 @@ import styles from './style.css';
 import Listing from './Listing.jsx';
 import rightArrow from '../dist/arrow-slider-right.png';
 import prevArrow from '../dist/arrow-slider-left.png';
+import _ from 'underscore';
 
 // import exampleListings from '../../data/exampleData.js'
 
 class SimilarListings extends React.Component {
 
     constructor(props) {
+      //need to change currentlistingID to passed down props id
       super(props);
       this.state = {
         listings: exampleListings,
-        index: 0
+        index: 0,
+        currentListingId: 4,
+        listingsLength: 3
       }
 
     }
 
     componentDidMount () {
+
+      fetch(`/rooms/${this.state.currentListingId}/similar_listings`)
+      .then(response => response.json())
+      .then(
+        (listings) => {
+          console.log('success', listings);
+          this.setState({
+            listings: listings,
+            index: 0,
+            listingsLength: listings.length
+          })
+        },
+  
+        (error)=> {
+          console.log('sorry error!', error);
+        }  
+      )
       // grab the props from app and make an api call
-    }
-
-    incrementIndex () {
-      let newIndex = this.state.index+1;
-      this.setState({
-        index: newIndex
-      })
-    }
-
-    decrementIndex () {
-      let newIndex = this.state.index-1;
-      this.setState({
-        index: newIndex
-      })
     }
 
     render () {
@@ -44,9 +51,9 @@ class SimilarListings extends React.Component {
         slidesToScroll: 1, 
         arrows: true,
         infinite: false,
-        nextArrow: <NextArrow incrementIndex={this.incrementIndex.bind(this)} currentIndex = {this.state.index}/>,
-        prevArrow: <PrevArrow decrementIndex={this.decrementIndex.bind(this)} currentIndex = {this.state.index}/>,
-
+        nextArrow: <NextArrow  currentIndex = {this.state.index} maxLength = {this.state.listingsLength}/>,
+        prevArrow: <PrevArrow currentIndex = {this.state.index}/>,
+        afterChange: current => this.setState({index: current})
       };
 
       return (
@@ -70,13 +77,13 @@ class SimilarListings extends React.Component {
 }
 
 
-const NextArrow = ({onClick, incrementIndex, currentIndex}) => {
-  let visibilityState = (currentIndex === 0 ) ? "visible" : 'hidden';
+const NextArrow = ({onClick, incrementIndex, currentIndex, maxLength, debounceInc}) => {
+  let visibilityState = (currentIndex < maxLength - 3 ) ? "visible" : 'hidden';
   return (
       <span
           style={{visibility: visibilityState}}
           className="slick-arrow"
-          onClick={() => {onClick(); incrementIndex();}}
+          onClick={onClick}
       >
           <img src={rightArrow} className={styles.nextArrow}/>
       </span>
@@ -89,7 +96,7 @@ const PrevArrow = ({onClick, decrementIndex, currentIndex}) => {
       <span
           style={{visibility: visibilityState}}
           className="slick-arrow"
-          onClick={() => {onClick(); decrementIndex();}}
+          onClick={onClick}
       >
           <img src={prevArrow} className={styles.prevArrow} />
       </span>

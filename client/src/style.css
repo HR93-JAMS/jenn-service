@@ -124,16 +124,6 @@ font-family: 'Open Sans', sans-serif; */
   width: 316px;
 }
 
-.heart {
-  position: absolute;
-  top: 13px;
-  right: 28px;
-  z-index: 2;
-  font-size: 26px;
-  cursor: pointer;
-  color: white;
-}
-
 .heartPath {
   stroke: white;
   stroke-width: 2px;
@@ -148,3 +138,4 @@ font-family: 'Open Sans', sans-serif; */
   fill-opacity: .4;
   width: 32px;
 }
+
