@@ -264,3 +264,53 @@ td {
   border-top: 1px solid #ddd;
 
 }
+
+.listName {
+  composes: font;
+  font-size: 19px;
+  line-height: 24px;
+  font-weight: 400;
+}
+
+.listInput {
+  font-family: 'Roboto', sans-serif;
+  width: 94%;
+  font-size: 19px;
+  font-weight: 100;
+  padding: 11px;
+  margin: 10px 0px;;
+}
+
+.cancelButton {
+  color: #008489;
+  border: 2px solid #008489; 
+  padding: 12px 24px;
+  font-size: 19px;
+  composes: font;
+  font-weight: 700;
+  border-radius: 4px;
+  float: right;
+  margin-right: 10px;
+
+}
+
+.createButton {
+  color:white;
+  background-color: #008489;
+  border: 2px solid #008489; 
+  padding: 12px 24px;
+  font-size: 19px;
+  composes: font;
+  font-weight: 400;
+  border-radius: 4px;
+  float: right;
+}
+
+.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.createBox {
+  height: 162px;
+}

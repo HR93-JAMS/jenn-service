@@ -22,11 +22,11 @@ const Rating = ({rating}) => {
     );
   }
 
-  return (
+return (
 
-    <span>{stars}</span>
+  <span>{stars}</span>
 
-  )
+)
 }
 
 export default Rating;
