@@ -148,11 +148,14 @@ font-family: 'Open Sans', sans-serif; */
   transform: translate(-50%, -50%);
   height: 676px;
   width: 504px;
-  padding: 32px;
   background-color: white;
-
+  outline: none! important;
   box-shadow: 0 0 20px #ababab;
 
+}
+
+.topModal {
+  padding: 24px;
 }
 
 .Overlay {
@@ -181,6 +184,9 @@ font-family: 'Open Sans', sans-serif; */
   line-height: 24px;
   cursor: pointer;
   user-select: auto;
+  padding: 16px 0px;
+  display: block;
+
 }
 
 a:hover {
@@ -198,4 +204,53 @@ button {
   padding: 0;
   border: none;
   background: none;
+}
+
+
+.table {
+  border-collapse: collapse;
+
+}
+
+
+.rowHeart{
+  fill: rgb(225,90,95);
+  width: 32px;
+  height: 24px;
+}
+
+.rowHeartPath {
+  stroke: white;
+  stroke-width: 1px;
+  transform: scale(0.8);
+}
+
+
+
+.emptyRowHeart{
+  fill: white;
+  width: 32px;
+  height: 24px;
+}
+
+.emptyRowHeartPath {
+    stroke: rgb(118,118,118);
+    stroke-width: 2px;
+    transform: scale(0.8);
+}
+
+.rowName{
+  font-family: 'Roboto', sans-serif;
+  font-size: 17px;
+  letter-spacing: 1px;
+  line-height: 24px;
+  font-weight: 100;
+  width: 95%;
+}
+
+td {
+  padding: 16px 0px;
+  border-bottom: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+
 }
