@@ -5,6 +5,7 @@ describe('DB', () => {
   
   test('Should return an array when asked for similar listings', (done) => {
     db.getSimilarListings(1, (err, result) => {
+      jest.setTimeout(10000);
       expect(Array.isArray(result)).toBe(true);
       done();
     });
@@ -15,13 +16,12 @@ describe('DB', () => {
       if (err) {
         console.log(err);
       } else {
-        expect(result[0].keywords.includes('home')).toBe(true);
+        jest.setTimeout(10000);
+        expect(result[0].keywords.includes('animated') || result[0].keywords.includes('happy') ).toBe(true);
         done();
       }
-     
-    });
   });
-
+  })
 });
 
 

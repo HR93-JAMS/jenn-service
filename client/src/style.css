@@ -208,6 +208,7 @@ a:hover {
   width: 26px;
   fill: rgb(118,118,118);
   transform: scale(0.65);
+  cursor: pointer;
 }
 
 button {
