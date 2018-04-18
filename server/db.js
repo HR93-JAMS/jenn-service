@@ -56,7 +56,6 @@ const getSimilarListings = (id, callback) => {
       return listings;
      } 
   }).then((listings) => {
-    console.log('here are the similar listings', listings);
     callback(null, listings);
   }).catch((err) => callback(err, null));
 

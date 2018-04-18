@@ -5,7 +5,8 @@ import ReactModal from 'react-modal';
 import MiniListing from './MiniListing.jsx';
 import List from './List.jsx';
 import CreateList from './CreateList.jsx';
-ReactModal.setAppElement('#similarListing');
+
+// ReactModal.setAppElement('#app');
 
 const Modal = ({isOpen, handleCloseModal, lists, handleHeartToggle, data, handleAdd}) => {
 

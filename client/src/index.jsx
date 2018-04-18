@@ -79,9 +79,6 @@ class SimilarListings extends React.Component {
 }
 
 
-
-
-
 const exampleListings = [ { keywords: [ 'animated', 'happy', 'home' ],
 id: 1,
 imageUrl: 'https://s3.us-east-2.amazonaws.com/fantasybnb/images/1.jpg',
@@ -119,4 +116,4 @@ num_reviews: 64,
 avg_rating: 4.82,
 __v: 0 } ]
 
-ReactDOM.render(<SimilarListings currentListingId={50}/>, document.getElementById('similarListing'));
+export default SimilarListings;
