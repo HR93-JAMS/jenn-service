@@ -37,7 +37,6 @@ class Listing extends React.Component  {
   }
 
   handleAddList (newList) {
-    console.log('newlist', newList);
     let copiedLists = this.state.lists;
     copiedLists[newList] = true;
     this.setState({
