@@ -24,7 +24,6 @@ fs.readFile('./fullListings.csv', 'utf8', (err, data) => {
         keywordString = keywordString.slice(1, keywordString.length - 1);
       }
       const keywords = keywordString.split(' ');
-      console.log('here is the num reviews', listing[5]);
       const newObj = {
         id: Number(listing[1]),
         imageUrl: listing[7],

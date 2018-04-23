@@ -9,9 +9,7 @@ const app = express();
 app.use(morgan('dev'));
 app.use(parser.json());
 
-// app.use(express.static('../client/dist'));
 app.use(express.static(path.join(__dirname, '../client/dist')));
-
 
 app.get('/rooms/:listingId/similar_listings', (req, res) => {
 
@@ -21,8 +19,6 @@ app.get('/rooms/:listingId/similar_listings', (req, res) => {
       res.status(404);
       res.end(err);
     } else {
-      console.log('here are all the similar listings!', listings);
-      //json stringify?
       res.send(listings);
     }
   });
