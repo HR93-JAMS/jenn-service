@@ -3,11 +3,13 @@ const parser = require('body-parser');
 const morgan = require('morgan');
 const db = require('./db.js');
 const path = require('path');
+const cors = require('cors')
 
 const app = express();
 
 app.use(morgan('dev'));
 app.use(parser.json());
+app.use(cors());
 
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
