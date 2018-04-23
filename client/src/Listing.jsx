@@ -48,7 +48,6 @@ class Listing extends React.Component  {
   handleHeartToggle (key) {
     let copiedLists = this.state.lists;
     copiedLists[key] = !copiedLists[key]
-    console.log('copied list', copiedLists);
     this.setState({
       lists: copiedLists
     })

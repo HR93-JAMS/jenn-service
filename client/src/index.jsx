@@ -36,7 +36,6 @@ class SimilarListings extends React.Component {
         .then(response => response.json())
         .then(
           (listings) => {
-            console.log('success', listings);
             this.setState({
               listings: listings,
               index: 0,
