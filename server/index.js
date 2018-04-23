@@ -1,14 +1,16 @@
 const express = require('express');
-let parser = require('body-parser');
-let morgan = require('morgan'); 
-let db = require('./db.js');
+const parser = require('body-parser');
+const morgan = require('morgan');
+const db = require('./db.js');
+const path = require('path');
 
-let app = express();
+const app = express();
 
 app.use(morgan('dev'));
 app.use(parser.json());
 
-app.use(express.static('../client/dist'));
+// app.use(express.static('../client/dist'));
+app.use(express.static(path.join(__dirname, '../client/dist')));
 
 
 app.get('/rooms/:listingId/similar_listings', (req, res) => {
