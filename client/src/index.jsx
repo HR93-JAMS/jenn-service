@@ -31,7 +31,7 @@ class SimilarListings extends React.Component {
     }
 
     fetchSimilarListings () {
-      fetch(`http://localhost:1128/rooms/${this.props.currentListingId}/similar_listings`)
+      fetch(`http://localhost:3333/rooms/${this.props.currentListingId}/similar_listings`)
         .then(response => response.json())
         .then(
           (listings) => {

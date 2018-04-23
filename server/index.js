@@ -3,7 +3,7 @@ const parser = require('body-parser');
 const morgan = require('morgan');
 const db = require('./db.js');
 const path = require('path');
-const cors = require('cors')
+const cors = require('cors');
 
 const app = express();
 
@@ -11,7 +11,8 @@ app.use(morgan('dev'));
 app.use(parser.json());
 app.use(cors());
 
-app.use('/:locationId', express.static(path.join(__dirname, '../client/dist')));
+// app.use(':locationId', express.static(path.join(__dirname, '../client/dist')));
+app.use(express.static(path.join(__dirname, '../client/dist')));
 
 app.get('/rooms/:listingId/similar_listings', (req, res) => {
 
@@ -42,7 +43,7 @@ app.post('/rooms/:listingId', (req, res) => {
 });
 
 
-let port = 1128;
+let port = 3333;
 
 app.listen(port, function() {
   console.log(`listening on port ${port}`);
