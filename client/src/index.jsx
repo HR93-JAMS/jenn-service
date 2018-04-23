@@ -35,7 +35,6 @@ class SimilarListings extends React.Component {
         .then(response => response.json())
         .then(
           (listings) => {
-            console.log('here are the similar listings', listings);
             this.setState({
               listings: listings,
               index: 0,
@@ -67,7 +66,6 @@ class SimilarListings extends React.Component {
             <Slider {...settings}>
             {
               this.state.listings.map((listing, index) => {
-                console.log('here is the listing', listing);
                 return <Listing key={index} data={listing} index={index}/>
               })
             }
