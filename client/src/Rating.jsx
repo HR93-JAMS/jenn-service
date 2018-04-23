@@ -6,7 +6,7 @@ const Rating = ({rating}) => {
   let stars = [];
   for (let i = 0; i < 10; i++) {
     let klass = `fas fa-star ${styles.gray} ${styles.stars}`;
-    if (rating >= i) {
+    if (Math.floor(rating*2) > i) {
       klass = `fas fa-star teal ${styles.teal} ${styles.stars}`;
     }
     stars.push(
@@ -18,6 +18,7 @@ const Rating = ({rating}) => {
           direction: i % 2 === 0 ? "ltr" : "rtl"
         }}
         className={klass}
+        key={i}
       />
     );
   }

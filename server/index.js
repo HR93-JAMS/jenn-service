@@ -11,7 +11,7 @@ app.use(morgan('dev'));
 app.use(parser.json());
 app.use(cors());
 
-app.use(express.static(path.join(__dirname, '../client/dist')));
+app.use('/:locationId', express.static(path.join(__dirname, '../client/dist')));
 
 app.get('/rooms/:listingId/similar_listings', (req, res) => {
 

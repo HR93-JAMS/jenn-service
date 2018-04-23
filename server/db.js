@@ -46,7 +46,8 @@ const getSimilarListings = (id, callback) => {
 
     return Listing.find({ price: {$gt: price-100, $lt: price+100 }, keywords: {$in: keywords}})
       .where({ id: {$ne: currentId}})
-      .sort({avg_rating: -1});
+      .sort({avg_rating: -1})
+      .limit(12);
   }).then((listings) => {
     if (listings.length < 1) {
       return Listing.find({keywords: {$in: keywords}})
