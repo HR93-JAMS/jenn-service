@@ -3,72 +3,81 @@ import ReactDOM from 'react-dom';
 import Slider from  'react-slick';
 import styles from './style.css';
 import Listing from './Listing.jsx';
-// import exampleListings from '../../data/exampleData.js'
+import PrevArrow from './PrevArrow.jsx';
+import NextArrow from './NextArrow.jsx';
+
 
 class SimilarListings extends React.Component {
 
     constructor(props) {
+      //need to change currentlistingID to passed down props id
       super(props);
       this.state = {
         listings: exampleListings,
-        index: 0
+        index: 0,
+        listingsLength: 3
       }
 
-      this.handleClick = this.handleClick.bind(this);
+      this.fetchSimilarListings = this.fetchSimilarListings.bind(this);
     }
 
+    componentDidMount () {
+      this.fetchSimilarListings();
+    }
+    
+    componentDidUpdate(prevProps) {
+      if (prevProps.currentListingId !== this.props.currentListingId) {
+        this.fetchSimilarListings();
+      }
+    }
 
-    handleClick (direction) {
-      if (direction === 'left') {
-        var index = this.state.index-1;
-      } else {
-        index = this.state.index+1;
-      }
-      if (index < this.state.listings.length-2 && index >= 0) {
-        this.setState({
-          index: index
-        });
-      }
+    fetchSimilarListings () {
+      fetch(`/rooms/${this.props.currentListingId}/similar_listings`)
+        .then(response => response.json())
+        .then(
+          (listings) => {
+            console.log('success', listings);
+            this.setState({
+              listings: listings,
+              index: 0,
+              listingsLength: listings.length
+            })
+          },
+    
+          (error)=> {
+            console.log('sorry error!', error);
+          }  
+      )
     }
 
     render () {
 
-      // var settings = {
-      //   slidesToShow: 3,
-      //   slidesToScroll: 1, 
-      //   arrows: true
-      // };
+      var settings = {
+        slidesToShow: 3,
+        slidesToScroll: 1, 
+        arrows: true,
+        infinite: false,
+        nextArrow: <NextArrow  currentIndex = {this.state.index} maxLength = {this.state.listingsLength}/>,
+        prevArrow: <PrevArrow currentIndex = {this.state.index}/>,
+        afterChange: current => this.setState({index: current})
+      };
 
       return (
         <div className={styles.listings}>
         <h1 className={`${styles.header} ${styles.font} `}>Similar listings</h1>
-        <span onClick={() => this.handleClick("left")} className={`${styles.leftArrow}`}/>
-
-
-
-            {/* <Slider {...settings}>
+            <Slider {...settings}>
             {
-              this.state.listings.map((listing) => {
-                return <Listing data={listing}/>
-              })
-            }
-            </Slider> */}
-            <span className={styles.container}>
-             {
               this.state.listings.map((listing, index) => {
-                if (this.state.index <= index && index < this.state.index+3) {
-                  return <Listing data={listing}/>
-                }
+                return <Listing key={index} data={listing} index={index}/>
               })
             }
-          </span>
-          <span onClick={() => this.handleClick('right')} className={`${styles.rightArrow}`}/>
-
+            </Slider>
         </div>
       )
     };
 
 }
+
 
 const exampleListings = [ { keywords: [ 'animated', 'happy', 'home' ],
 id: 1,
@@ -107,4 +116,4 @@ num_reviews: 64,
 avg_rating: 4.82,
 __v: 0 } ]
 
-ReactDOM.render(<SimilarListings />, document.getElementById('similarListing'));
+export default SimilarListings;

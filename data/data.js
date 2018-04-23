@@ -12,7 +12,7 @@ const db = require('../server/db.js');
 
 const listings = [];
 
-fs.readFile('./listings.csv', 'utf8', (err, data) => {
+fs.readFile('./fullListings.csv', 'utf8', (err, data) => {
   if (err) {
     console.log('error in reading'.err);
   } else {
@@ -24,7 +24,7 @@ fs.readFile('./listings.csv', 'utf8', (err, data) => {
         keywordString = keywordString.slice(1, keywordString.length - 1);
       }
       const keywords = keywordString.split(' ');
-
+      console.log('here is the num reviews', listing[5]);
       const newObj = {
         id: Number(listing[1]),
         imageUrl: listing[7],
@@ -40,7 +40,13 @@ fs.readFile('./listings.csv', 'utf8', (err, data) => {
     }
 
     for (let i = 0; i < listings.length; i++) {
-      db.save(listings[i]);
+      db.save(listings[i], (err, listing) => {
+        if (err) {
+          console.log('error', err);
+        } else {
+          console.log('success', listing);
+        }
+      });
     }
   }
 });
