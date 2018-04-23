@@ -18,6 +18,7 @@ const Rating = ({rating}) => {
           direction: i % 2 === 0 ? "ltr" : "rtl"
         }}
         className={klass}
+        key={i}
       />
     );
   }
