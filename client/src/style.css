@@ -82,6 +82,7 @@ font-family: 'Open Sans', sans-serif; */
   width: 1000px;
   position: relative;
   box-sizing: content-box;
+  margin-left: 62px;
 }
 
 .leftArrow {
