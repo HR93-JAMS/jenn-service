@@ -8,10 +8,12 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "webpack": "webpack -d --watch",
+    "webpack-dev": "webpack -d --watch",
+    "webpack": "webpack -p --watch",
     "server-dev": "nodemon --inspect server/index.js",
     "test": "jest",
-    "start": "node server/index.js"
+    "start": "node server/index.js",
+    "build": "webpack"
   },
   "dependencies": {
     "babel-preset-env": "^1.6.1",
