@@ -25,6 +25,8 @@
     "react-dom": "^16.3.2",
     "react-modal": "^3.4.1",
     "react-slick": "^0.23.1",
+    "redis": "^2.8.0",
+    "response-time": "^2.3.2",
     "semantic-ui-react": "^0.79.1",
     "slick-carousel": "^1.8.1"
   },
