@@ -31,8 +31,9 @@ class SimilarListings extends React.Component {
     }
 
     fetchSimilarListings () {
-      let url = window.location.hostname;
-      fetch(`http://ec2-18-188-208-12.us-east-2.compute.amazonaws.com/rooms/${this.props.currentListingId}/similar_listings`)
+      const url = (process.env.NODE_ENV === 'production') ? 'http://ec2-18-188-208-12.us-east-2.compute.amazonaws.com': 'http://localhost:3333'
+
+      fetch(`${url}/rooms/${this.props.currentListingId}/similar_listings`)
         .then(response => response.json())
         .then(
           (listings) => {
