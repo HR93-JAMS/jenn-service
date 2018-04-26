@@ -2,4 +2,4 @@ config.js
 .vscode
 node_modules
 bundle.js
-
+Gruntfile.js
