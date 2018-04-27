@@ -5,6 +5,8 @@ import styles from './style.css';
 import Listing from './Listing.jsx';
 import PrevArrow from './PrevArrow.jsx';
 import NextArrow from './NextArrow.jsx';
+import 'react-activity/lib/Dots/Dots.css';
+import Dots from 'react-activity/lib/Dots';
 
 class SimilarListings extends React.Component {
 
@@ -14,15 +16,19 @@ class SimilarListings extends React.Component {
       this.state = {
         listings: [],
         index: 0,
-        listingsLength: 4
+        listingsLength: null,
+        loadedAllImages: false,
+        imagesCounter: 0
       }
 
       this.fetchSimilarListings = this.fetchSimilarListings.bind(this);
+      this.onLoad = this.onLoad.bind(this);
     }
 
     componentDidMount () {
       this.fetchSimilarListings();
     }
+    
     
     componentDidUpdate(prevProps) {
       if (prevProps.currentListingId !== this.props.currentListingId) {
@@ -30,9 +36,18 @@ class SimilarListings extends React.Component {
       }
     }
 
+    onLoad () {
+      let counter = this.state.imagesCounter+1;
+      this.setState({imagesCounter: counter});
+      if (counter === this.state.listingsLength) {
+        this.setState({
+          loadedAllImages: true
+        })
+      }
+    }
+
     fetchSimilarListings () {
       const url = (process.env.NODE_ENV === 'production') ? 'http://ec2-18-188-208-12.us-east-2.compute.amazonaws.com': 'http://localhost:3333'
-
       fetch(`${url}/rooms/${this.props.currentListingId}/similar_listings`)
         .then(response => response.json())
         .then(
@@ -62,18 +77,40 @@ class SimilarListings extends React.Component {
         afterChange: current => this.setState({index: current})
       };
 
-      return (
-        <div className={styles.listings}>
-        <h1 className={`${styles.header} ${styles.font} `}>Similar listings</h1>
-            <Slider {...settings}>
-            {
-              this.state.listings.map((listing, index) => {
-                return <Listing key={index} data={listing} index={index}/>
-              })
-            }
-            </Slider>
-        </div>
-      )
+      if (!this.state.loadedAllImages) {
+        return (
+          <div>
+          <div className={styles.dotContainer}>
+            <div className={styles.dots}>
+              <div className={styles.dot}></div>
+              <div className={styles.dot}></div>
+              <div className={styles.dot}></div>
+              </div>
+          </div>
+            <div className={styles.hidden}>
+            {this.state.listings.map((listing, i) =>
+              <img src={listing.imageUrl} onLoad={this.onLoad} key={i} />
+            )}
+          </div>
+          </div>
+        )
+      } else {
+        
+        return (
+  
+          <div className={styles.listings}>
+          <h1 className={`${styles.header} ${styles.font} `}>Similar listings</h1>
+              <Slider {...settings}>
+              {
+                this.state.listings.map((listing, index) => {
+                  return <Listing key={index} data={listing} index={index}/>
+                })
+              }
+              </Slider>
+          </div>
+        )
+      }
+
     };
 
 }

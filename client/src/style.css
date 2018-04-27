@@ -5,6 +5,7 @@
 font-family: 'Open Sans', sans-serif; */
 }
 
+
 /* .listings {
   composes: font;
 } */
@@ -316,4 +317,49 @@ td {
 
 .createBox {
   height: 162px;
+}
+
+@keyframes dots-pulse {
+  0% {
+    opacity: 0.1; }
+  15% {
+    opacity: 1; }
+  100% {
+    opacity: 0.1; } }
+
+
+.dots .dot {
+  border-radius: 100%;
+  display: inline-block;
+  margin-right: .8em;
+  background-color: #008489;
+  width: 0.5em;
+  height: 0.5em;
+  animation-name: dots-pulse;
+  animation-duration: 0.8s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite; 
+}
+
+.dotContainer {
+  text-align: center;
+  padding: 25%;
+}
+
+  .dots .dot:last-child {
+    margin-right: 0; }
+
+  .dot:first-of-type {
+    animation-delay: -0.5s;
+  }
+  .dot:nth-of-type(2) {
+    animation-delay: -0.3s;
+  }
+  .dot:nth-of-type(3) {
+    animation-delay: -0.1s;
+  }
+
+
+.hidden {
+  display: none;
 }

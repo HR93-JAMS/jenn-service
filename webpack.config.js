@@ -21,7 +21,7 @@ module.exports = {
         },
         {
           test: /\.css$/,
-          include: SRC_DIR,
+          // include: SRC_DIR,
           use: [
             {
                loader: 'style-loader',

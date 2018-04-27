@@ -15,6 +15,7 @@ class Listing extends React.Component  {
       onList: false,
     }
     this.data = this.props.data;
+    this.onLoad = this.props.onLoad;
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
     this.handleHeartToggle = this.handleHeartToggle.bind(this);
