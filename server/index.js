@@ -9,7 +9,7 @@ const responseTime = require('response-time');
 
 const app = express();
 
-const redis = redisModule.createClient();
+const redis = redisModule.createClient('6379', '172.17.0.3');
 
 redis.on('error', (err) => {
   console.log('Error on redis', err);
