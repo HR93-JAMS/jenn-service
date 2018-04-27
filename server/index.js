@@ -23,7 +23,7 @@ app.use(cors());
 app.use(responseTime());
 
 // app.use(':locationId', express.static(path.join(__dirname, '../client/dist')));
-app.use(express.static(path.join(__dirname, '../client/dist')));
+app.use('/:listingId', express.static(path.join(__dirname, '../client/dist')));
 
 app.get('/rooms/:listingId/similar_listings', (req, res) => {
 

@@ -127,6 +127,15 @@ font-family: 'Open Sans', sans-serif; */
   width: 316px;
 }
 
+.image:hover {
+  cursor: pointer;
+}
+
+.listingText:hover {
+  cursor: pointer;
+}
+
+
 .heartPath {
   stroke: white;
   stroke-width: 2px;
@@ -343,7 +352,7 @@ td {
 
 .dotContainer {
   text-align: center;
-  padding: 25%;
+  padding: 20%;
 }
 
   .dots .dot:last-child {
