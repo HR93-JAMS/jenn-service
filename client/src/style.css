@@ -142,6 +142,10 @@ font-family: 'Open Sans', sans-serif; */
   transform: scale(0.85);
 }
 
+.heartPath:hover, .heartSVG:hover, .filledHeartSVG {
+  cursor: pointer;
+}
+
 
 .heartSVG {
   position: absolute;
@@ -150,6 +154,7 @@ font-family: 'Open Sans', sans-serif; */
   z-index: 1;
   fill-opacity: .4;
   width: 32px;
+  height: 26px;
 }
 
 .filledHeartSVG {
@@ -158,6 +163,7 @@ font-family: 'Open Sans', sans-serif; */
   right: 28px;
   z-index: 1;
   width: 32px;
+  height: 26px;
   fill: rgb(225,90,95);
 }
 
