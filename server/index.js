@@ -4,28 +4,45 @@ const morgan = require('morgan');
 const db = require('./db.js');
 const path = require('path');
 const cors = require('cors');
+const redisModule = require('redis');
+const responseTime = require('response-time');
 
 const app = express();
+
+const redis = redisModule.createClient('6379', '172.17.0.3');
+
+redis.on('error', (err) => {
+  console.log('Error on redis', err);
+})
 
 app.use(morgan('dev'));
 app.use(parser.json());
 app.use(cors());
+app.use(responseTime());
 
 // app.use(':locationId', express.static(path.join(__dirname, '../client/dist')));
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
 app.get('/rooms/:listingId/similar_listings', (req, res) => {
 
-  let id = req.params.listingId;
-  db.getSimilarListings(id, (err, listings) => {
-    if (err) {
-      res.status(404);
-      res.end(err);
+  const id = req.params.listingId;
+
+  redis.get(id, (err, result) => {
+    if (result) {
+      console.log('in redis!');
+      res.send(JSON.parse(result));  
     } else {
-      res.send(listings);
+      db.getSimilarListings(id, (err, listings) => {
+        if (err) {
+          res.status(404);
+          res.end(err);
+        } else {
+          redis.setex(id, 300, JSON.stringify(listings));
+          res.send(listings);
+        }
+      });
     }
   });
-
 });
 
 app.post('/rooms/:listingId', (req, res) => {
