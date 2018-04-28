@@ -74,7 +74,16 @@ class SimilarListings extends React.Component {
         infinite: false,
         nextArrow: <NextArrow  currentIndex = {this.state.index} maxLength = {this.state.listingsLength}/>,
         prevArrow: <PrevArrow currentIndex = {this.state.index}/>,
-        afterChange: current => this.setState({index: current})
+        afterChange: current => this.setState({index: current}),
+        responsive: [
+          {
+            breakpoint: 1120,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 1,
+            }
+          }
+        ]
       };
 
       if (!this.state.loadedAllImages) {

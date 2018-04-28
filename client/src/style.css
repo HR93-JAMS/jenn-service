@@ -83,7 +83,7 @@ font-family: 'Open Sans', sans-serif; */
   width: 1000px;
   position: relative;
   box-sizing: content-box;
-  margin-left: 62px;
+  margin: auto;
 }
 
 .leftArrow {
@@ -377,4 +377,15 @@ td {
 
 .hidden {
   display: none;
+}
+
+@media only screen and (max-width: 1120px) {
+  .listings {
+    width: 779px;
+  }
+
+  .image {
+    width: 375px;
+    height: 263px;
+  }
 }
