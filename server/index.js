@@ -7,9 +7,11 @@ const cors = require('cors');
 const redisModule = require('redis');
 const responseTime = require('response-time');
 
+
 const app = express();
 
-const redis = redisModule.createClient('6379', '172.17.0.3');
+// const redis = redisModule.createClient('6379', '172.17.0.3');
+const redis = redisModule.createClient();
 
 redis.on('error', (err) => {
   console.log('Error on redis', err);
@@ -21,7 +23,7 @@ app.use(cors());
 app.use(responseTime());
 
 // app.use(':locationId', express.static(path.join(__dirname, '../client/dist')));
-app.use(express.static(path.join(__dirname, '../client/dist')));
+app.use('/:listingId', express.static(path.join(__dirname, '../client/dist')));
 
 app.get('/rooms/:listingId/similar_listings', (req, res) => {
 
