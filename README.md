@@ -2,7 +2,7 @@
 
 > This is a module built with React that displays recommended listings similar to the current listing being viewed on a page. 
 
-<img src="https://media.giphy.com/media/WOgUMm5xrqOnNmZuNO/giphy.gif">
+  <img src="https://media.giphy.com/media/WOgUMm5xrqOnNmZuNO/giphy.gif">
 
 ## Related Projects
 
