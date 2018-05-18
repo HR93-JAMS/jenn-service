@@ -2,6 +2,8 @@
 
 > This is a module built with React that displays recommended listings similar to the current listing being viewed on a page. 
 
+<img src="https://gph.is/2rTm7wN">
+
 ## Related Projects
 
   - https://github.com/fantasybnb/images-service
