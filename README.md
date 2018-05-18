@@ -1,39 +1,32 @@
 # Project Name
 
-> Project description
+> This is a module built with React that displays recommended listings similar to the current listing being viewed on a page. 
 
 ## Related Projects
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+  - https://github.com/fantasybnb/images-service
+  - https://github.com/fantasybnb/booking-service
+  - https://github.com/fantasybnb/reviews-service
 
 ## Table of Contents
 
 1. [Usage](#Usage)
-1. [Requirements](#requirements)
-1. [Development](#development)
+1. [Setup](#Setup)
 
 ## Usage
 
-> Some usage instructions
+You can navigate to http://localhost:3333/:id, where id is an integer between 0 and 100 (inclusive). This will show the specific recommendations associated with that listing id.
 
-## Requirements
 
-An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
-
-- Node 6.13.0
-- etc
-
-## Development
-
-### Installing Dependencies
+### Setup
 
 From within the root directory:
 
-```sh
-npm install -g webpack
-npm install
-```
+1. Install dependencies  
+   `npm install`  
+2. Build project  
+   `npm run webpack` (or `npm run webpack-dev` to build a development bundle)  
+3. Start server
+   `npm start`
+
 
