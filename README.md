@@ -1,4 +1,4 @@
-# Project Name
+# Fantasybnb
 
 > This is a module built with React that displays recommended listings similar to the current listing being viewed on a page. 
 
